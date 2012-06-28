@@ -9,7 +9,7 @@ $key = '';
 $secret = '';
 $format = 'xml';
 $site_url = ''; // Your site url (example : http://sandbox.local/dyb/)
-$callback_url = 'test.php'; // Your relative callback URL
+$callback_url = 'app.php'; // Your relative callback URL
 
 
 session_start();
