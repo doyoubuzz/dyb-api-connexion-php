@@ -14,7 +14,7 @@ You must :
 
 ## Application
 
-* Set your ApiKey, ApiSecret and site url and launch test.php in your webserver (cURL extension must be installed). 
+* Set your ApiKey, ApiSecret and site url and launch app.php in your webserver (cURL extension must be installed). 
 * You will then be redirected on DoYouBuzz.com on the authorization screen. 
 * If you authorize the application to access your information, you will be redirected on your website with an extract of your DoYouBuzz datas
 
