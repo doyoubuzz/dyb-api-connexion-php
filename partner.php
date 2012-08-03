@@ -8,8 +8,9 @@
  
 $key 	= '';
 $secret = '';
+$user_id = '';
 
-$url = "http://api.doyoubuzz.com/user/?userId=2&apiKey=".$key."&apiSecret=".$secret;
+$url = "http://api.doyoubuzz.com/user/?userId=".$user_id."&apiKey=".$key."&apiSecret=".$secret;
 
 $post_string = '';
 
