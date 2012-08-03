@@ -5,10 +5,10 @@
  * Just configure the informations below :)
  */
 
-$key = '';
-$secret = '';
+$key = 'd851x6FEiFw_TXMMONFh';
+$secret = 'n0bOnimR2vbEu4MAn4aAlmx5w';
 $format = 'xml';
-$site_url = ''; // Your site url (example : http://sandbox.local/dyb/)
+$site_url = 'http://api-example.local/'; // Your site url (example : http://sandbox.local/dyb/)
 $callback_url = 'app.php'; // Your relative callback URL
 
 
@@ -38,7 +38,6 @@ if (isset($_GET['oauth_token'])) {
 	print_r($a);
 	echo '</pre>';
 } 
-
 
 else {	
 	session_unset();
