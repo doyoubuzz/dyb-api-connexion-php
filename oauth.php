@@ -13,6 +13,8 @@
  * @version 1.1.0
  */
 
+namespace DoYouBuzz;
+
 class Oauth {
 	public $site = "";
 	public $request_token_path = "oauth/requestToken";
@@ -39,12 +41,6 @@ class Oauth {
 
 		if ($base_url !== FALSE) {
 			$this->base_url = $base_url;
-		}
-
-		// Are we in a CI app?
-		if (function_exists("get_instance") && defined("APPPATH")) {
-			$this->ci =& get_instance();
-			$this->base_url = $this->ci->config->item("base_url");
 		}
 
 		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, TRUE);

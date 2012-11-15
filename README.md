@@ -14,11 +14,14 @@ You must :
 
 ## Application
 
-* Set your ApiKey, ApiSecret and site url and launch app.php in your webserver (cURL extension must be installed). 
+* Set your ApiKey, ApiSecret and site url in the config.php file
+* Launch app.php in your webserver (cURL extension must be installed). 
 * You will then be redirected on DoYouBuzz.com on the authorization screen. 
 * If you authorize the application to access your information, you will be redirected on your website with an extract of your DoYouBuzz datas
 
-## Partner
+## Partner (deprecated)
+
+Please note this API is deprecated and will be removed soon. If you rely on this API please contact us.
 
 * Set your ApiKey and ApiSecret in the partner.php file
 * Change the userId parameter in the $url string (this user must has joined you private CV database so you can get his informations)
