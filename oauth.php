@@ -61,9 +61,9 @@ class Oauth {
 			"oauth_consumer_key"       => $this->shared_key,
 			"oauth_signature_method"   => $this->signature_method,
 			"oauth_timestamp"          => time(),
-			"oauth_nonce"              => sha1(time()),
+			"oauth_nonce"              => sha1(time().rand(0,1000000)),
 			"oauth_callback"           => urlencode($this->base_url.$this->callback)
-		);
+		);	
 
 		$url = $this->site . $this->request_token_path;
 				
@@ -103,7 +103,7 @@ class Oauth {
 			"oauth_verifier"           => $oauth_verifier,
 			"oauth_consumer_key"       => $this->shared_key,
 			"oauth_signature_method"   => $this->signature_method,
-			"oauth_nonce"              => sha1(time()),
+			"oauth_nonce"              => sha1(time().rand(0,1000000)),
 			"oauth_timestamp"          => time(),
 			"oauth_version"            => "1.0",
 			"oauth_token"              => $request_token,
@@ -139,7 +139,7 @@ class Oauth {
 			"oauth_token"              => $oauth_token,//$this->access_token,
 			"oauth_signature_method"   => $this->signature_method,
 			"oauth_timestamp"          => time(),
-			"oauth_nonce"              => sha1(time()),
+			"oauth_nonce"              => sha1(time().rand(0,1000000)),
 		);
 
 		$params = array_merge($params, $prot);
