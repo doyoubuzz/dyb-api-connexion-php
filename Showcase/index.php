@@ -96,7 +96,7 @@
             $data = $shwApi->doRequest("dyb/user/".$userId, array('isIdOrigin' => 1));
             break;
         case DYB_CV_REQUEST:
-            $data = $shwApi->doRequest("dyb/cv/".$cvId, array('isIdOrigin' => 1));
+            $data = $shwApi->doRequest("dyb/cv/".$cvId);
             break;
         case DYB_EMPLOYMENT_PREFERENCES_REQUEST:
             $data = $shwApi->doRequest("dyb/employmentpreferences/". $userId, array('isIdOrigin' => 1));
