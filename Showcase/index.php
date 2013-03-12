@@ -11,9 +11,10 @@
     const TAG_REQUEST = 7;
     const TAG_USERS_REQUEST = 8;
     const DYB_USER_REQUEST = 9;
-    const DYB_CV_REQUEST = 10;
-    const DYB_EMPLOYMENT_PREFERENCES_REQUEST = 11;
-    const DYB_SEARCH_REQUEST = 12;
+    const DYB_USERS_LASTUPDATE = 10;
+    const DYB_CV_REQUEST = 11;
+    const DYB_EMPLOYMENT_PREFERENCES_REQUEST = 12;
+    const DYB_SEARCH_REQUEST = 13;
 
     $requestTranslation = array(
         USERS_REQUEST => "Users",
@@ -26,6 +27,7 @@
         TAG_REQUEST => "One Tag",
         TAG_USERS_REQUEST =>  "Users associated to a tag",
         DYB_USER_REQUEST =>  "User's DoYouBuzz profile",
+        DYB_USERS_LASTUPDATE => "Last udpated users",
         DYB_CV_REQUEST =>  "Users's DoYouBuzz resume",
         DYB_EMPLOYMENT_PREFERENCES_REQUEST => "User's DoYouBuzz employment preferences",
         DYB_SEARCH_REQUEST => "Search"
@@ -34,7 +36,7 @@
     // Configuration
     $apikey = "XXXXXXXXXXXX";
     $apisecret =  "XXXXXXXXXXXX";
-    $userId = 1664;
+    $userId = 2676;
     $cvId = 2643;
     $tagId = 28;
 
@@ -91,6 +93,9 @@
             break;
         case TAG_USERS_REQUEST:
             $data = $shwApi->doRequest("tags/". $tagId ."/users");
+            break;
+        case DYB_USERS_LASTUPDATE:
+            $data = $shwApi->doRequest("dyb/users/lastupdate", array('since' => '@1'));
             break;
         case DYB_USER_REQUEST:
             $data = $shwApi->doRequest("dyb/user/".$userId, array('isIdOrigin' => 1));
