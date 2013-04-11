@@ -1,7 +1,9 @@
 <?php
     require_once('./ShowcaseApiWrapper.php');
+    require_once('./config.php');
 
     const USERS_REQUEST = 0;
+    const USERS_SEARCH_REQUEST = 16;
     const USER_REQUEST = 1;
     const USER_TOKEN_REQUEST = 2;
     const USER_TAG_REQUEST = 3;
@@ -12,12 +14,15 @@
     const TAG_USERS_REQUEST = 8;
     const DYB_USER_REQUEST = 9;
     const DYB_USERS_LASTUPDATE = 10;
-    const DYB_CV_REQUEST = 11;
-    const DYB_EMPLOYMENT_PREFERENCES_REQUEST = 12;
-    const DYB_SEARCH_REQUEST = 13;
+    const DYB_USERS_CREATED = 11;
+    const DYB_USERS_LASTDELETE = 12;
+    const DYB_CV_REQUEST = 13;
+    const DYB_EMPLOYMENT_PREFERENCES_REQUEST = 14;
+    const DYB_SEARCH_REQUEST = 15;
 
     $requestTranslation = array(
         USERS_REQUEST => "Users",
+        USERS_SEARCH_REQUEST => "Search among users",
         USER_REQUEST => "One user",
         USER_TOKEN_REQUEST => "User token",
         USER_TAG_REQUEST => "User tags",
@@ -27,18 +32,21 @@
         TAG_REQUEST => "One Tag",
         TAG_USERS_REQUEST =>  "Users associated to a tag",
         DYB_USER_REQUEST =>  "User's DoYouBuzz profile",
-        DYB_USERS_LASTUPDATE => "Last udpated users",
+        DYB_USERS_LASTUPDATE => "Last udpated users since a specific date",
+        DYB_USERS_CREATED => "Created users since a specific date",
+        DYB_USERS_LASTDELETE => "Last deleted users since a specific date",
         DYB_CV_REQUEST =>  "Users's DoYouBuzz resume",
         DYB_EMPLOYMENT_PREFERENCES_REQUEST => "User's DoYouBuzz employment preferences",
         DYB_SEARCH_REQUEST => "Search"
     );
 
     // Configuration
-    $apikey = "XXXXXXXXXXXX";
-    $apisecret =  "XXXXXXXXXXXX";
-    $userId = 2676;
-    $cvId = 2643;
-    $tagId = 28;
+    $apikey = $config['apikey'];
+    $apisecret = $config['apisecret'];
+    $userId = $config['userId'];
+    $cvId = $config['cvId'];
+    $tagId = $config['tagId'];
+    $searchTerm = $config['searchTerm'];
 
     $isHome = !isset($_GET['request']);
 
@@ -53,6 +61,9 @@
     switch($request) {
         case USERS_REQUEST:
             $data = $shwApi->doRequest("users");
+            break;
+        case USERS_SEARCH_REQUEST:
+            $data = $shwApi->doRequest("users/search", array('term' => $searchTerm));
             break;
         case USER_REQUEST:
             $data = $shwApi->doRequest("users/". $userId, array('isIdOrigin' => 1));
@@ -96,6 +107,12 @@
             break;
         case DYB_USERS_LASTUPDATE:
             $data = $shwApi->doRequest("dyb/users/lastupdate", array('since' => '@1'));
+            break;
+        case DYB_USERS_CREATED:
+            $data = $shwApi->doRequest("dyb/users/created", array('since' => '@1'));
+            break;
+        case DYB_USERS_LASTDELETE:
+            $data = $shwApi->doRequest("dyb/users/lastdelete", array('since' => '@1'));
             break;
         case DYB_USER_REQUEST:
             $data = $shwApi->doRequest("dyb/user/".$userId, array('isIdOrigin' => 1));

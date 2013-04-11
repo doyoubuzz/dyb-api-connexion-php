@@ -1,0 +1,9 @@
+<?php
+$config = array(
+    'apikey' => "XXXXXXXXXXXX",
+    'apisecret' =>  "XXXXXXXXXXXX",
+    'userId' => 2697,
+    'cvId' => 2643,
+    'tagId' => 28,
+    'searchTerm' => 'bertrand',
+);
