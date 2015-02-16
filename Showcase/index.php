@@ -20,6 +20,7 @@
     const DYB_EMPLOYMENT_PREFERENCES_REQUEST = 14;
     const DYB_SEARCH_REQUEST = 15;
     const DYB_METADATA_REQUEST = 17;
+    const DYB_CV_DISPLAY_CONFIG = 18;
 
     $requestTranslation = array(
         USERS_REQUEST => "Users",
@@ -39,7 +40,8 @@
         DYB_CV_REQUEST =>  "Users's DoYouBuzz resume",
         DYB_EMPLOYMENT_PREFERENCES_REQUEST => "User's DoYouBuzz employment preferences",
         DYB_SEARCH_REQUEST => "Search",
-        DYB_METADATA_REQUEST => "Update metadata for user"
+        DYB_METADATA_REQUEST => "Update metadata for user",
+        DYB_CV_DISPLAY_CONFIG => "Get the user's display configuration for his resume (color, design id ...)"
     );
 
     // Configuration
@@ -169,6 +171,10 @@
                 </metadatas>
             ';
             $data = $shwApi->doRequest("dyb/metadata/update", array(), $metadatas);
+            break;
+
+        case DYB_CV_DISPLAY_CONFIG:
+            $data = $shwApi->doRequest(sprintf("dyb/cv/%s/display/%s", $cvId, "web"));
             break;
     }
     if ($data) { echo json_encode($data); }
