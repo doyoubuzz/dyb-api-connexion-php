@@ -19,6 +19,7 @@
     const DYB_CV_REQUEST = 13;
     const DYB_EMPLOYMENT_PREFERENCES_REQUEST = 14;
     const DYB_SEARCH_REQUEST = 15;
+    const DYB_METADATA_REQUEST = 17;
 
     $requestTranslation = array(
         USERS_REQUEST => "Users",
@@ -37,7 +38,8 @@
         DYB_USERS_LASTDELETE => "Last deleted users since a specific date",
         DYB_CV_REQUEST =>  "Users's DoYouBuzz resume",
         DYB_EMPLOYMENT_PREFERENCES_REQUEST => "User's DoYouBuzz employment preferences",
-        DYB_SEARCH_REQUEST => "Search"
+        DYB_SEARCH_REQUEST => "Search",
+        DYB_METADATA_REQUEST => "Update metadata for user"
     );
 
     // Configuration
@@ -143,6 +145,30 @@
                 </search>
             ';
             $data = $shwApi->doRequest("dyb/search", array(), $searchRequest);
+            break;
+        case DYB_METADATA_REQUEST:
+            $metadatas = '
+                <metadatas>
+                    <users>
+                        <user>' . $userId . '</user>
+                    </users>
+                    <unassign>
+                        <metadatas>
+                            <metadata>
+                                <key>com.acmeinc.user.kind:*</key>
+                            </metadata>
+                        </metadatas>
+                    </unassign>
+                    <assign>
+                        <metadatas>
+                            <metadata>
+                                <key>com.acmeinc.user.kind:awesome-guy</key>
+                            </metadata>
+                        </metadatas>
+                    </assign>
+                </metadatas>
+            ';
+            $data = $shwApi->doRequest("dyb/metadata/update", array(), $metadatas);
             break;
     }
     if ($data) { echo json_encode($data); }
