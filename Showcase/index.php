@@ -41,7 +41,8 @@
         DYB_EMPLOYMENT_PREFERENCES_REQUEST => "User's DoYouBuzz employment preferences",
         DYB_SEARCH_REQUEST => "Search",
         DYB_METADATA_REQUEST => "Update metadata for user",
-        DYB_CV_DISPLAY_CONFIG => "Get the user's display configuration for his resume (color, design id ...)"
+        DYB_CV_DISPLAY_CONFIG => "Get the user's display configuration for his resume (color, design id ...)",
+        DYB_CV_LIST => "Get Resumes list (filtered or not)"
     );
 
     // Configuration
@@ -123,6 +124,13 @@
             break;
         case DYB_CV_REQUEST:
             $data = $shwApi->doRequest("dyb/cv/".$cvId);
+            break;
+        case DYB_CV_LIST:
+            $filters = [ "filters" => [
+                [ "type" => "cvType", "value" => "main" ]
+            ]];
+            $filtersJson = json_encode($filters);
+            $data = $shwApi->doRequest("cv/list", [], $filtersJson);
             break;
         case DYB_EMPLOYMENT_PREFERENCES_REQUEST:
             $data = $shwApi->doRequest("dyb/employmentpreferences/". $userId, array('isIdOrigin' => 1));
