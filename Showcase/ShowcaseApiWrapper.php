@@ -58,7 +58,7 @@ class ShowcaseApiWrapper {
         $info       = curl_getinfo($ch);
         $code       = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if($code == 200 || $code == 204) {
+        if ($code >= 200 && $code < 300) {
             $result = json_decode($content);
         } else {
             throw new Exception('Error while getting data from API on URL ' . $url . ' with return code (' . $code . ') : Request: ' . $body . ' - Response: '. $content);
