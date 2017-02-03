@@ -80,12 +80,13 @@
         case USER_COMMENTS:
             $filters = [ "filters" => [
                 [ "type" => "created", "value" => "2017-02-02", "comparator" => "<" ],
-                [ "type" => "updated", "value" => "2017-02-02", "comparator" => "<" ]
+                [ "type" => "updated", "value" => "2017-02-02", "comparator" => "<" ],
+                [ "type" => "user", "value" => "86" ]
             ], "sort" => [
                 [ "field" => "created", "order" => "ASC"]
             ]];
             $filtersJson = json_encode($filters);
-            $data = $shwApi->doRequest("users/" . $userId . "/comments", [], $filtersJson);
+            $data = $shwApi->doRequest("users/comments", [], $filtersJson);
             break;
         case USER_TAG_REQUEST:
             $data = $shwApi->doRequest("users/" . $userId . "/tags", array('isIdOrigin' => 1));
