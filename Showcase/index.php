@@ -31,7 +31,7 @@
         USER_TAG_REQUEST => "User tags",
         USER_TAG_ASSOCIATION_REQUEST => "Associate tag to a user",
         USER_TAG_DISSOCIATION_REQUEST => "Dissociate tag to a user",
-        USER_COMMENTS => "Get user's comments",
+        USER_COMMENTS => "Get comments",
         TAGS_REQUEST => "Tags",
         TAG_REQUEST => "One Tag",
         TAG_USERS_REQUEST =>  "Users associated to a tag",
@@ -81,7 +81,7 @@
             $filters = [ "filters" => [
                 [ "type" => "created", "value" => "2017-02-02", "comparator" => "<" ],
                 [ "type" => "updated", "value" => "2017-02-02", "comparator" => "<" ],
-                [ "type" => "user", "value" => "86" ]
+                [ "type" => "user", "value" => $userId ]
             ], "sort" => [
                 [ "field" => "created", "order" => "ASC"]
             ]];
