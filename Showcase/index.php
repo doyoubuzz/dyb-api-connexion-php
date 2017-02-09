@@ -86,7 +86,7 @@
                 [ "field" => "created", "order" => "ASC"]
             ]];
             $filtersJson = json_encode($filters);
-            $data = $shwApi->doRequest("users/comments", [], $filtersJson);
+            $data = $shwApi->doRequest("comments", [], $filtersJson);
             break;
         case USER_TAG_REQUEST:
             $data = $shwApi->doRequest("users/" . $userId . "/tags", array('isIdOrigin' => 1));
