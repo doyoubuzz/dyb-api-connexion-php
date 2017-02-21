@@ -9,6 +9,7 @@
     const USER_TAG_REQUEST = 3;
     const USER_TAG_ASSOCIATION_REQUEST = 4;
     const USER_TAG_DISSOCIATION_REQUEST = 5;
+    const USER_COMMENTS = 19;
     const TAGS_REQUEST = 6;
     const TAG_REQUEST = 7;
     const TAG_USERS_REQUEST = 8;
@@ -30,6 +31,7 @@
         USER_TAG_REQUEST => "User tags",
         USER_TAG_ASSOCIATION_REQUEST => "Associate tag to a user",
         USER_TAG_DISSOCIATION_REQUEST => "Dissociate tag to a user",
+        USER_COMMENTS => "Get comments",
         TAGS_REQUEST => "Tags",
         TAG_REQUEST => "One Tag",
         TAG_USERS_REQUEST =>  "Users associated to a tag",
@@ -75,6 +77,17 @@
             break;
         case USER_TOKEN_REQUEST:
             $data = $shwApi->doRequest("users/". $userId ."/token", array('isIdOrigin' => 1));
+            break;
+        case USER_COMMENTS:
+            $filters = [ "filters" => [
+                [ "type" => "created", "value" => "2017-02-02", "comparator" => "<" ],
+                [ "type" => "updated", "value" => "2017-02-02", "comparator" => "<" ],
+                [ "type" => "user", "value" => $userId ]
+            ], "sort" => [
+                [ "field" => "created", "order" => "ASC"]
+            ]];
+            $filtersJson = json_encode($filters);
+            $data = $shwApi->doRequest("comments", [], $filtersJson);
             break;
         case USER_TAG_REQUEST:
             $data = $shwApi->doRequest("users/" . $userId . "/tags", array('isIdOrigin' => 1));
