@@ -6,4 +6,5 @@ $config = array(
     'cvId' => 2643,
     'tagId' => 28,
     'searchTerm' => 'bertrand',
+    'managerId' => 67052
 );
