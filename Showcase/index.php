@@ -44,7 +44,8 @@
         DYB_SEARCH_REQUEST => "Search",
         DYB_METADATA_REQUEST => "Update metadata for user",
         DYB_CV_DISPLAY_CONFIG => "Get the user's display configuration for his resume (color, design id ...)",
-        DYB_CV_LIST => "Get Resumes list (filtered or not)"
+        DYB_CV_LIST => "Get Resumes list (filtered or not)",
+        DYB_SET_MANAGER => "Set user's manager"
     );
 
     // Configuration
@@ -54,6 +55,7 @@
     $cvId = $config['cvId'];
     $tagId = $config['tagId'];
     $searchTerm = $config['searchTerm'];
+    $managerId = $config['managerId'];
 
     $isHome = !isset($_GET['request']);
 
@@ -91,6 +93,9 @@
             break;
         case USER_TAG_REQUEST:
             $data = $shwApi->doRequest("users/" . $userId . "/tags", array('isIdOrigin' => 1));
+            break;
+        case "DYB_SET_MANAGER":
+            $data = $shwApi->doRequest("users/". $userId ."/manager", [ 'managerId' => $managerId ], null, 'PUT');
             break;
         case USER_TAG_ASSOCIATION_REQUEST:
             echo '
