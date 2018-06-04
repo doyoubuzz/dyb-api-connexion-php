@@ -7,7 +7,7 @@
  */
 class ShowcaseApiWrapper {
 
-    const API_URL = "http://showcase.doyoubuzz.com/api";
+    const API_URL = "https://showcase.doyoubuzz.com/api";
 
     const API_VERSION = "v1";
 
